@@ -1,0 +1,22 @@
+[Unit]
+Description=The VIOG Wallet distributed currency daemon
+After=network.target
+
+[Service]
+User=viog
+Group=viog
+
+Type=forking
+PIDFile=/var/lib/viogd/viogd.pid
+ExecStart=/usr/bin/viogd -daemon -pid=/var/lib/viogd/viogd.pid \
+-conf=/etc/viog/viog.conf -datadir=/var/lib/viogd -disablewallet
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

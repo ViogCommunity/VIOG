@@ -1,0 +1,7 @@
+[main]
+host = https://www.transifex.com
+
+[viog.qt-translation-012x]
+file_filter = src/qt/locale/viog_<lang>.ts
+source_file = src/qt/locale/viog_en.ts
+source_lang = en

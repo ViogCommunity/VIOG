@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+#  viogd The VIOG Wallet server.
+#
+#
+# chkconfig: 345 80 20
+# description: viogd
+# processname: viogd
+#
+
+# Source function library.
+. /etc/init.d/functions
+
+# you can override defaults in /etc/sysconfig/viogd, see below
+if [ -f /etc/sysconfig/viogd ]; then
+        . /etc/sysconfig/viogd
+fi
+
+RETVAL=0
+
+prog=viogd
+# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/viogd
+lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/viogd}
+
+# viogd defaults to /usr/bin/viogd, override with BITCOIND_BIN
+viogd=${BITCOIND_BIN-/usr/bin/viogd}
+
+# viogd opts default to -disablewallet, override with BITCOIND_OPTS
+viogd_opts=${BITCOIND_OPTS--disablewallet}
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon $DAEMONOPTS $viogd $viogd_opts
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $prog
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: service $prog {start|stop|status|restart}"
+        exit 1
+        ;;
+esac

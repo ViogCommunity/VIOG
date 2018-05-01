@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=VIOG
+Comment=VIOG P2P Cryptocurrency
+Comment[fr]=VIOG, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=VIOG, eşten eşe kriptografik sanal para birimi
+Exec=viog-qt %u
+Terminal=false
+Type=Application
+Icon=viog128
+MimeType=x-scheme-handler/viog;
+Categories=Office;Finance;
