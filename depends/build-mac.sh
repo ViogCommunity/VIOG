@@ -20,5 +20,5 @@ fi
 
 # Make dependencies
 make -C depends HOST=$HOST
-cd ../..
+cd ..
 ./autogen.sh && ./configure --prefix=$PWD/depends/$PLATFORM --host=$PLATFORM --disable-tests && make clean && make -j$(nproc)
