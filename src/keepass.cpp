@@ -494,7 +494,7 @@ void CKeePassIntegrator::rpcSetLogin(const SecureString& strWalletPass, const Se
     LogPrint("keepass", "CKeePassIntegrator::rpcSetLogin - send Url: %s\n", sUrl);
 
     //request.addStrParameter("SubmitUrl", sSubmitUrl); // Is used to construct the entry title
-    request.addStrParameter("Login", SecureString("vivoinnovaonexgobyte")); //needs to stay for rpc ?
+    request.addStrParameter("Login", SecureString("The VIOG Wallet"));
     request.addStrParameter("Password", strWalletPass);
     if(sEntryId.size() != 0)
     {
