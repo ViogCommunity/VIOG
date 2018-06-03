@@ -45,8 +45,8 @@ const std::string CLIENT_NAME("The VIOG Wallet");
 //! git will put "#define GIT_ARCHIVE 1" on the next line inside archives. 
 #define GIT_ARCHIVE 1
 #ifdef GIT_ARCHIVE
-#define GIT_COMMIT_ID "129d39c"
-#define GIT_COMMIT_DATE "Fri, 11 May 2018 00:11:00 +0200"
+#define GIT_COMMIT_ID "81632ac"
+#define GIT_COMMIT_DATE "Sun, 03 Jun 2018 12:53:00 +0200"
 #endif
 
 #define BUILD_DESC_WITH_SUFFIX(maj, min, rev, build, suffix) \
