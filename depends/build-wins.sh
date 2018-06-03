@@ -14,7 +14,6 @@ OLD_PATH=`pwd`
 INSTALL_DIR="$OLD_PATH/$PLATFORM"
 LIB_DIR="$INSTALL_DIR/lib"
 INCLUDE_DIR="$INSTALL_DIR/include"
-chmod +x config.*
 
 # Install development tools if needed
 if [ ! -f $CC ]; then
@@ -27,7 +26,6 @@ make HOST=$PLATFORM
 # Build from source code leveldb
 LEVELDB_DIR="../src/leveldb"
 cd $LEVELDB_DIR
-chmod +x build_detect_platform
 CC="$CC" CXX="$CXX" TARGET_OS="NATIVE_WINDOWS" make
 cd $OLD_PATH
 rm "$LIB_DIR/libleveldb.a"
@@ -43,10 +41,11 @@ cp ../src/config/condition_variable.hpp "$INCLUDE_DIR/boost/thread/win32/conditi
 
 # Build eth dependencies
 cd ..
-chmod +x autogen.sh
-chmod +x share/genbuild.sh
 ./autogen.sh Windows $PLATFORM $INSTALL_DIR
 ./configure --prefix=$PWD/depends/$PLATFORM --host=$PLATFORM --disable-tests
+
+# Clean possible failed make
+make clean
 
 # Build the application
 make -j$(nproc)
